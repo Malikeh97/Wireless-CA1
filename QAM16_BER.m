@@ -1,4 +1,4 @@
-N = 1000; % number of symbols
+N = 10000; % number of symbols
 M = 16;   % constellation size
 k = log2(M); % bits per symbol
 
@@ -47,7 +47,7 @@ for ii = 1:length(Eb_N0_dB)
     n = (1/sqrt(2))*(randn(1,N) + 1i*randn(1,N)); % white guassian noise, 0dB variance 
     hh=rot90(fliplr(h),-1);
     nn=rot90(fliplr(n),-1);
-    y = s + 10^(-Es_N0_dB(ii)/20)*(n./hh);
+    y = hh.*s + 10^(-Es_N0_dB(ii)/20)*(n);
     % demodulation
     % ------------
     y_re = real(y)/k_16QAM; % real part
